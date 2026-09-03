@@ -1,6 +1,11 @@
 import random
 
+# Add error if cooldown is somehow < 0
+
 class Character:
+    inventory = []
+    cooldown = 0
+    
     def __init__(self, name, STR, INT, max_HP, END):
         self.name = name
         self.STR = STR
@@ -11,14 +16,15 @@ class Character:
 
         self.END = END
 
-        self.inventory = []
-
 
     def __str__(self):
         return f"\n{self.name}\n   HP: {self.HP}/{self.max_HP}\n   STR: {self.STR}\n   INT: {self.INT}\n   END: {self.END}"
     
     def is_alive(self):
         return self.HP > 0
+
+    def attack(self):
+        # Roll dice for dmg based on STR or INT, depends on subclass
 
     def take_damage(self, damage):
         self.HP -= damage
@@ -42,5 +48,30 @@ print(f"{C.name} takes 120 damage! {C.HP}/{C.max_HP} HP")
 
 print(f"Is {C.name} alive? {C.is_alive()}")
 
+
 class Warrior(Character):
-    pass
+    def __init__(self, warrior, name="N/A"):
+        super().__init__(name, warrior, STR=16, END=12, INT=2, HP=100)
+        self.warrior = warrior 
+    
+    # Special attack
+    def one_shot_kill(self):
+        if self.cooldown == 0:
+            print(f"{self.name} uses One Shot Kill!")
+            self.cooldown = 3
+        else:
+            if self.cooldown != 1:
+                print(f"One Shot Kill is on cooldownfor {self.cooldown} more turns.")
+            else:
+                print(f"One Shot Kill is on cooldown for {self.cooldown} more turn.")
+        
+        # Add dice rolls 
+
+
+
+class Sage(Character):
+    def __init__(self):
+        pass
+
+    # Special attack
+    
