@@ -1,10 +1,10 @@
-import random
-
+from dice import roll_dice
 # Add error if cooldown is somehow < 0
 
 class Character:
     inventory = []
     cooldown = 0
+    has_rested = False
     
     def __init__(self, name, STR, INT, max_HP, END):
         self.name = name
@@ -32,22 +32,11 @@ class Character:
             self.HP = 0
 
     def after_combat_effects(self):
-        self.STR += random.randint(1, 3)
-        self.INT += random.randint(1, 3)
-        self.END += random.randint(1, 5)
-
-
-        
-C = Character("Hero", 10, 5, 100, 10)
-print(C)
-
-
-C.take_damage(120)
-print(f"{C.name} takes 120 damage! {C.HP}/{C.max_HP} HP")
-
-
-print(f"Is {C.name} alive? {C.is_alive()}")
-
+        # D4 boosts
+        self.STR += roll_dice(4)
+        self.INT += roll_dice(4)
+        self.END += roll_dice(4)
+    
 
 class Warrior(Character):
     def __init__(self, warrior, name="N/A"):
@@ -75,3 +64,13 @@ class Sage(Character):
 
     # Special attack
     
+
+
+C = Character("Hero", 10, 5, 100, 10)
+print(C)
+
+C.take_damage(120)
+print(f"{C.name} takes 120 damage! {C.HP}/{C.max_HP} HP")
+
+
+print(f"Is {C.name} alive? {C.is_alive()}")

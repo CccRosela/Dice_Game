@@ -3,6 +3,8 @@
 # goal is to do 20 explorations to reach the end of the game
 def main():
   player = create_player() # needs to be done
+  explorations = 0
+
 
   while player.is_alive() and explorations < 20:  # player.is_alive(), a character class function
    # event happens 

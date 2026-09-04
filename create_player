@@ -1,0 +1,18 @@
+from character_classes import Character, Warrior, Sage
+
+def create_player():
+    print("Please choose your character class: \n1: Warrior\n2: Sage")
+    choice = input("What do you wish to be?: ")
+
+    while True:
+        try: 
+            if choice == "1":
+                name = input("Enter your Warrior's name: ")
+                return Warrior(name)
+            elif choice == "2":
+                name = input("Enter your Sage's name: ")
+                return Sage(name)
+            else:
+                raise ValueError
+        except ValueError:
+            print("Invalid input. Please enter a number corresponding to your choice.\n")
