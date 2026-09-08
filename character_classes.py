@@ -47,6 +47,8 @@ class Warrior(Character):
     def one_shot_kill(self):
         if self.cooldown == 0:
             print(f"{self.name} uses One Shot Kill!")
+
+            roll = roll_dice(12)
             self.cooldown = 3
         else:
             if self.cooldown != 1:
@@ -59,11 +61,21 @@ class Warrior(Character):
 
 
 class Sage(Character):
-    def __init__(self):
-        pass
+    def __init__(self, sage, name="N/A"):
+        super().__init__(name, sage, STR=2, END=12, INT=16, HP=100)
+        self.sage = sage
 
-    # Special attack
-    
+
+    # Special Attack
+    def shining_arrows(self):
+        if self.cooldown == 0:
+            print(f"{self.name} uses Shining Arrows!")
+
+            roll = roll_dice(12)
+            self.cooldown = 3
+
+        else:
+            print("Shining Arrows is on cooldown.")
 
 
 C = Character("Hero", 10, 5, 100, 10)
